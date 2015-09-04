@@ -13,7 +13,7 @@ public class Main {
         }catch(NumberFormatException nfe){
             System.err.println("Invalid Format!");
         } catch (IOException e) {
-            System.err.println(e);
+            System.err.println(e.getMessage());
         }
     }
 
