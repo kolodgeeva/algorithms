@@ -1,19 +1,16 @@
-package deikstri;
-
-import utils.StdOut;
+package dijkstra;
 
 import java.util.ArrayList;
 import java.util.Stack;
 
 /**
  * Created by User on 10/4/2015.
- *  Evaluates (fully parenthesized) arithmetic expressions using
- *  Dijkstra's two-stack algorithm.
+ * Evaluates (fully parenthesized) arithmetic expressions using
+ * Dijkstra's two-stack algorithm.
  */
-public class Deikstri {
+public class DijkstraTwoStack {
 
     public static Double evaluate(ArrayList<String> expression) {
-
 
         Stack<String> ops = new Stack<String>();
         Stack<Double> vals = new Stack<Double>();
