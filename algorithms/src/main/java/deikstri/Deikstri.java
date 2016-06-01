@@ -2,26 +2,27 @@ package deikstri;
 
 import utils.StdOut;
 
-import java.util.Scanner;
+import java.util.ArrayList;
 import java.util.Stack;
 
 /**
  * Created by User on 10/4/2015.
+ *  Evaluates (fully parenthesized) arithmetic expressions using
+ *  Dijkstra's two-stack algorithm.
  */
 public class Deikstri {
 
-    public static void evaluate() {
-        Scanner scanner = new Scanner(System.in);
+    public static Double evaluate(ArrayList<String> expression) {
+
 
         Stack<String> ops = new Stack<String>();
         Stack<Double> vals = new Stack<Double>();
 
-        while (scanner.hasNext()) {
-            String s = scanner.next();
+        for (int i = 0; i < expression.size(); i++) {
+            String s = expression.get(i);
             switch (s) {
                 case ";":
-                    StdOut.println(vals.pop());
-                    System.exit(0);
+                    return vals.pop();
                 case "(":
                     break;
                 case "+":
@@ -58,5 +59,6 @@ public class Deikstri {
                     break;
             }
         }
+        return vals.pop();
     }
 }
