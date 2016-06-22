@@ -10,6 +10,9 @@ import java.io.InputStreamReader;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+
 /**
  * Created by User on 6/1/2016.
  */
@@ -33,12 +36,25 @@ public class FixedCapacityStackTest {
 
     @Test
     public void test() throws IOException {
+
         List<String> strings = in.lines().collect(Collectors.toList());
         FixedCapacityStack<String> stack = new FixedCapacityStack<>(strings.size());
-        strings.forEach(stack::push);
-        System.out.println("Read stack: ");
+
+        for (String item : strings) {
+            if (!item.equals("-")) {
+                stack.push(item);
+            } else {
+                System.out.println(stack.pop() + " ");
+            }
+        }
+        
+        System.out.println("Left on stack: ");
         for (String s : stack) {
             System.out.println(s + " ");
         }
+
+        assertThat(stack.pop(), is("is"));
+        assertThat(stack.pop(), is("be"));
+        assertThat(stack.pop(), is("to"));
     }
 }
