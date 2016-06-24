@@ -14,9 +14,9 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
 /**
- * Created by User on 6/1/2016.
+ * Created by User on 6/22/2016.
  */
-public class FixedCapacityStackTest {
+public class ResizingArrayStackTest {
 
     private BufferedReader in = null;
 
@@ -38,7 +38,7 @@ public class FixedCapacityStackTest {
     public void test() throws IOException {
 
         List<String> strings = in.lines().collect(Collectors.toList());
-        FixedCapacityStack<String> stack = new FixedCapacityStack<>(strings.size());
+        ResizingArrayStack<String> stack = new ResizingArrayStack<>();
 
         for (String item : strings) {
             if (!item.equals("-")) {

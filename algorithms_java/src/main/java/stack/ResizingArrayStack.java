@@ -4,32 +4,42 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * Created by User on 6/1/2016.
+ * Created by User on 6/22/2016.
  */
-public class FixedCapacityStack<Item> implements Iterable<Item> {
-    private Item[] a;    // holds the items
-    private int N;       // number of items in stack
-
-    // create an empty stack with given capacity
-    public FixedCapacityStack(int capacity) {
-        a = (Item[]) new Object[capacity];   // no generic array creation
-        N = 0;
-    }
+public class ResizingArrayStack<Item> implements Iterable<Item> {
+    private Item[] a = (Item[]) new Object[1];
+    private int N;
 
     public boolean isEmpty() {
         return N == 0;
     }
 
     public void push(Item item) {
+        if (N == a.length) {
+            resize(2 * a.length);
+        }
         a[N++] = item;
     }
 
     public Item pop() {
-        return a[--N];
+        Item item = a[--N];
+        a[N] = null;
+        if (N > 0 && N == a.length / 4) {
+            resize(a.length / 2);
+        }
+        return item;
     }
 
     public int size() {
         return N;
+    }
+
+    private void resize(int max) {
+        Item[] temp = (Item[]) new Object[max];
+        for (int i = 0; i < N; i++) {
+            temp[i] = a[i];
+        }
+        a = temp;
     }
 
     public Iterator<Item> iterator() {
